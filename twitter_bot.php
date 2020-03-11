@@ -54,8 +54,8 @@ if (!$res || $status_code != 200) {
 
 /********************************************************/
 
-$res = file_get_contents('https://api.chatwork.com/', false, $context);
-// 401で'{"errors":["Invalid API token"]}'なら正常としておく。
+$res = file_get_contents('https://api.chatwork.com/v2/my/status', false, $context);
+// 401で'{"errors":["Invalid API Token"]}'なら正常としておく。
 
 file_put_contents(dirname(__FILE__) . '/tmp/res_header_api', print_r($http_response_header, true));
 file_put_contents(dirname(__FILE__) . '/tmp/content_api', $res);
@@ -65,7 +65,7 @@ $status_code = array_pop($matches[1]); // リダイレクトとかされる場�
 
 if (!$res || $status_code != 401) {
     tweet('チャットワークAPIは死んだ', 'api');
-} else if ($res != '{"errors":["Invalid API token"]}') {
+} else if ($res != '{"errors":["Invalid API Token"]}') {
     tweet('チャットワークAPIは死んだかもしれない', 'api');
 } else {
     tweet('チャットワークAPIは蘇った！！！', 'api');
