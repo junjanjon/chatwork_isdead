@@ -93,10 +93,11 @@ function tweet($message, $type = '') {
         $config['access_token_secret']
     );
 
+    print($message);
 //    return; // for debug
     $req = $connection->OAuthRequest('https://api.twitter.com/1.1/statuses/update.json', 'POST', array('status' => $message ));
 
     // ついでに自分にメール
     mb_internal_encoding('UTF-8');
-    mb_send_mail('ishikawam@nifty.com', $message, $message . "\n\nhttps://twitter.com/chatwork_isdead\n");
+    mb_send_mail('junki.hiroi@drecom.co.jp', $message, $message . "\n\nhttps://twitter.com/chatwork_isdead\n");
 }
